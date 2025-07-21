@@ -1,0 +1,60 @@
+{
+    "data": [
+        {
+            "id": 6,
+            "name": "UnfreezeCard",
+            "number": 1500001000300208,
+            "balance": 0,
+            "finished_at": "2016-11-11 11:11:11"
+        },
+        {
+            "id": 7,
+            "name": "LostCard",
+            "number": 1500001000300209,
+            "balance": 0,
+            "finished_at": "2016-11-11 11:11:11"
+        }
+    ],
+    "links": {
+        "first": "http:\/\/localhost\/cards?page=1",
+        "last": "http:\/\/localhost\/cards?page=3",
+        "prev": "http:\/\/localhost\/cards?page=1",
+        "next": "http:\/\/localhost\/cards?page=3"
+    },
+    "meta": {
+        "current_page": 2,
+        "from": 3,
+        "last_page": 3,
+        "links": [
+            {
+                "url": "http:\/\/localhost\/cards?page=1",
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/cards?page=1",
+                "label": "1",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/cards?page=2",
+                "label": "2",
+                "active": true
+            },
+            {
+                "url": "http:\/\/localhost\/cards?page=3",
+                "label": "3",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/cards?page=3",
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http:\/\/localhost\/cards",
+        "per_page": 2,
+        "to": 4,
+        "total": 5
+    }
+}

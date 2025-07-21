@@ -1,0 +1,12 @@
+{
+    "token": "some-token",
+    "ttl": 60,
+    "refresh_ttl": 20160,
+    "user": {
+        "first_name": "john",
+        "last_name": "boms",
+        "phone": "11111111",
+        "email": "boms@gmail.com",
+        "ssn": "729-61-1829"
+    }
+}

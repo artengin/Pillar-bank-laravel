@@ -1,0 +1,23 @@
+{
+    "App\\Jobs\\HandleTransactionWebhookJob": [
+        {
+            "tries": 5,
+            "job": null,
+            "connection": null,
+            "queue": "webhook-transactions",
+            "delay": null,
+            "afterCommit": null,
+            "middleware": [],
+            "chained": [],
+            "chainConnection": null,
+            "chainQueue": null,
+            "chainCatchCallbacks": null,
+            "data": {
+                "name": "Amazon",
+                "card_number": 8017750303723171,
+                "amount": 1,
+                "type": "outgoing"
+            }
+        }
+    ]
+}
