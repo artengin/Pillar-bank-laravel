@@ -1,6 +1,8 @@
 # Pillar Bank - backend
 
-Pillar Bank is a simulated banking application that interacts with a [Bank System Simulator](https://github.com/artengin/Bank-simulator-laravel) to perform KYC checks, issue cards, and receive transactions via webhooks.
+Pillar Bank is a simulated banking application that interacts with a [Bank System Simulator](https://github.com/artengin/Bank-simulator-laravel) to perform KYC checks, issue cards, and receive transactions via webhooks.  
+  
+[![Actions Status](https://github.com/artengin/Pillar-bank-laravel/actions/workflows/ci.yml/badge.svg)](https://github.com/artengin/Pillar-bank-laravel/actions)  
 
 ## Project Setup
 ```

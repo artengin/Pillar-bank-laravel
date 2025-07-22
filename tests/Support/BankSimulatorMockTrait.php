@@ -21,7 +21,7 @@ trait BankSimulatorMockTrait
     ): array {
         return $this->request(
             type: 'POST',
-            url: "https://api.dev.banksystemsimulator.ronas.cloud{$uri}",
+            url: config('defaults.kyc_url') . "{$uri}",
             data: $requestData,
             headers: [
                 'authorization' => 'token',
