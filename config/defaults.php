@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'card_name' => 'BankCard',
-    'auth' => env('WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET', 'bank-system-simulator'),
+    'auth' => 'bank-system-simulator',
 
     /*
     |--------------------------------------------------------------------------
