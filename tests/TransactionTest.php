@@ -40,7 +40,7 @@ class TransactionTest extends TestCase
     public function testCardNotFound()
     {
         $data = $this->getJsonFixture('card_not_found_request');
-
+        dd($this->token, config('defaults.auth'));
         $response = $this->actingAs(self::$user)
             ->withHeaders(['Authorization' => $this->token])
             ->json('post', '/webhook/transactions', $data);
