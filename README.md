@@ -64,6 +64,13 @@ The job runs in the background and doesn’t block the main request flow.
 `GET /transactions/{id}`
 
 - Retrieving a list of transactions for the authenticated user  
-`GET /transactions?card_id=1`
+`GET /transactions?card_id=1`  
+
+### 📘 API Documentation  
+
+- Automatic API documentation generation  
+Powered by `ronasit/laravel-swagger` 
+  
+  
 
 ![system overview pillar bank](storage/app/private/pillar-bank.png)
