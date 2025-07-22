@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'card_name' => 'BankCard',
-    'auth' => env('WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET'),
+    'auth' => env('WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET', 'bank-system-simulator'),
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'kyc_url' => env('KYC_URL'),
-    'kyc_secret_key' => env('KYC_SECRET_KEY'),
+    'kyc_secret_key' => env('KYC_SECRET_KEY', 'pillar-bank'),
 
     /*
     |--------------------------------------------------------------------------
