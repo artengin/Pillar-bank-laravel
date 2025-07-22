@@ -47,8 +47,10 @@ jobs:
           cp .env.testing.example .env.testing
           echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator" >> .env
           echo "KYC_SECRET_KEY=pillar-bank" >> .env
+          echo "KYC_URL=test" >> .env
           echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator" >> .env.testing
           echo "KYC_SECRET_KEY=pillar-bank" >> .env.testing
+          echo "KYC_URL=test" >> .env.testing
 
       - name: Install dependencies
         run: docker compose exec -T php composer install
