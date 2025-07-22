@@ -45,10 +45,10 @@ jobs:
         run: |
           cp .env.example .env
           cp .env.testing.example .env.testing
-          echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator" >> .env
-          echo "KYC_SECRET_KEY=pillar-bank" >> .env
-          echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator" >> .env.testing
-          echo "KYC_SECRET_KEY=pillar-bank" >> .env.testing
+          sed -i 's/^WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=.*/WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator/' .env
+          sed -i 's/^KYC_SECRET_KEY=.*/KYC_SECRET_KEY=pillar-bank/' .env
+          sed -i 's/^WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=.*/WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator/' .env.testing
+          sed -i 's/^KYC_SECRET_KEY=.*/KYC_SECRET_KEY=pillar-bank/' .env.testing
 
       - name: Install dependencies
         run: docker compose exec -T php composer install
