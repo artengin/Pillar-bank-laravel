@@ -25,8 +25,9 @@ class TransactionService extends EntityService
     {
         return $this
             ->searchQuery($filters)
-            ->filterBy('card_id')
-            ->filterByQuery(['name'])
+            ->filterBy('card.user_id', 'user_id')
+            ->filterGreater('created_at', false, 'date_from')
+            ->filterLess('created_at', false, 'date_to')
             ->getSearchResults();
     }
 

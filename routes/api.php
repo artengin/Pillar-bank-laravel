@@ -27,5 +27,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
     Route::controller(TransactionController::class)->group(function () {
         Route::get('transactions/{id}', 'get')->whereNumber('id');
+        Route::get('transactions', 'search');
     });
 });

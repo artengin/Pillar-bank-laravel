@@ -63,4 +63,7 @@ The job runs in the background and doesn’t block the main request flow.
 - Get transaction details by ID  
 `GET /transactions/{id}`
 
+- Retrieving a list of transactions for the authenticated user  
+`GET /transactions?card_id=1`
+
 ![system overview pillar bank](storage/app/private/pillar-bank.png)

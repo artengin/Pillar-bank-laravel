@@ -1,8 +1,9 @@
 {
     "id": 1,
     "card_id": 1,
-    "card": 1,
+    "card": 8017750303723171,
     "name": "Amazon",
-    "amount": 1,
-    "type": "outgoing"
+    "amount": 100,
+    "type": "outgoing",
+    "created_at": "2010-10-20T11:05:00.000000Z"
 }

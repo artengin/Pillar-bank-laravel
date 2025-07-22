@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Transaction\SearchRequest;
+use App\Http\Resources\Transaction\TransactionCollectionResource;
 use App\Http\Requests\Transaction\HandleWebhookRequest;
 use App\Http\Requests\Transaction\GetRequest;
 use App\Services\TransactionService;
@@ -16,6 +18,17 @@ class TransactionController extends Controller
         HandleTransactionWebhookJob::dispatch($request->validated());
 
         return response('', Response::HTTP_OK);
+    }
+
+    public function search(SearchRequest $request, TransactionService $service): TransactionCollectionResource
+    {
+        $filter = $request->validated();
+
+        $filter['user_id'] = $request->user()->id;
+
+        $transactions = $service->search($filter);
+
+        return TransactionCollectionResource::make($transactions);
     }
 
     public function get(GetRequest $request, TransactionService $service, int $id): TransactionResource

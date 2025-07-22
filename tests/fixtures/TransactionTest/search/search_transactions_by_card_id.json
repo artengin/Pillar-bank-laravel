@@ -1,0 +1,63 @@
+{
+    "data": [
+        {
+            "id": 2,
+            "card_id": 2,
+            "card": 8017750303723171,
+            "name": "Google",
+            "amount": 100,
+            "type": "incoming",
+            "created_at": "2015-10-20T11:06:00.000000Z"
+        },
+        {
+            "id": 3,
+            "card_id": 2,
+            "card": 8017750303723173,
+            "name": "Shop",
+            "amount": 20,
+            "type": "outgoing",
+            "created_at": "2011-10-20T11:05:00.000000Z"
+        },
+        {
+            "id": 5,
+            "card_id": 2,
+            "card": 8017750303723173,
+            "name": "Steam",
+            "amount": 30,
+            "type": "outgoing",
+            "created_at": "2013-10-20T11:05:00.000000Z"
+        }
+    ],
+    "links": {
+        "first": "http:\/\/localhost\/transactions?page=1",
+        "last": "http:\/\/localhost\/transactions?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http:\/\/localhost\/transactions?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http:\/\/localhost\/transactions",
+        "per_page": 15,
+        "to": 3,
+        "total": 3
+    }
+}

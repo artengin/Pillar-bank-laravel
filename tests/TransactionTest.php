@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\HttpFoundation\Response;
 use RonasIT\Support\Testing\ModelTestState;
 use App\Models\Transaction;
@@ -124,7 +125,7 @@ class TransactionTest extends TestCase
 
     public function testGetForbidden()
     {
-        $response = $this->actingAs(self::$user)->getJson('/transactions/2');
+        $response = $this->actingAs(self::$user::find(2))->getJson('/transactions/1');
 
         $response->assertForbidden();
 
@@ -138,5 +139,70 @@ class TransactionTest extends TestCase
         $response->assertOk();
 
         $this->assertEqualsFixture('get_response', $response->json());
+    }
+
+    public static function getSearchFilters(): array
+    {
+        return [
+            [
+                'filter' => [
+                    'date_from' => '2010-10-20',
+                    'date_to' => '2013-10-20',
+                ],
+                'fixture' => 'search/search_transactions_by_date',
+            ],
+            [
+                'filter' => [
+                    'all' => true,
+                ]
+                ,
+                'fixture' => 'search/search_transactions',
+            ],
+            [
+                'filter' => [
+                    'type' => 'incoming'
+                ],
+                'fixture' => 'search/search_transactions_by_type',
+            ],
+            [
+                'filter' => [
+                    'card_id' => 2
+                ],
+                'fixture' => 'search/search_transactions_by_card_id',
+            ],
+            [
+                'filter' => [
+                    'per_page' => 2,
+                    'page' => 2,
+                ],
+                'fixture' => 'search/search_per_page',
+            ],
+            [
+                'filter' => [
+                    'order_by' => 'name',
+                    'desc' => true,
+                ],
+                'fixture' => 'search/search_transactions_order_by_name',
+            ],
+        ];
+    }
+
+    #[DataProvider('getSearchFilters')]
+    public function testSearch($filter, $fixture)
+    {
+        $response = $this->actingAs(self::$user)->json('get', '/transactions', $filter);
+
+        $response->assertOk();
+
+        $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    public function testSearchNoAuth()
+    {
+        $response = $this->getJson('/transactions');
+
+        $response->assertUnauthorized();
+
+        $response->assertJson(['message' => 'Unauthenticated.']);
     }
 }

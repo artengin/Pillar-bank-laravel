@@ -16,6 +16,7 @@ class TransactionResource extends BaseResource
             'name' => $this->name,
             'amount' => $this->amount,
             'type' => $this->type,
+            'created_at' => $this->created_at,
         ];
     }
 }
