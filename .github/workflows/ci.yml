@@ -12,9 +12,31 @@ jobs:
   laravel-tests:
     runs-on: ubuntu-latest
 
+    services:
+      pgsql:
+        image: bitnami/postgresql:17.4.0
+        env:
+          ALLOW_EMPTY_PASSWORD: "yes"
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+      redis:
+        image: bitnami/redis:7.4
+        env:
+          ALLOW_EMPTY_PASSWORD: "yes"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up Docker
+        run: docker compose up -d --build
+
+      - name: Trust app directory in Git
+        run: docker compose exec -T php git config --global --add safe.directory /app
 
       - name: Set permissions
         run: chmod -R 777 storage bootstrap/cache
@@ -23,20 +45,10 @@ jobs:
         run: |
           cp .env.example .env
           cp .env.testing.example .env.testing
-          {
-            echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator"
-            echo "KYC_SECRET_KEY=pillar-bank"
-            echo "KYC_URL=test"
-          } >> .env
-
-          {
-            echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator"
-            echo "KYC_SECRET_KEY=pillar-bank"
-            echo "KYC_URL=test"
-          } >> .env.testing
-
-      - name: Start containers
-        run: docker compose up -d --build php pgsql redis
+          echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator" >> .env
+          echo "KYC_SECRET_KEY=pillar-bank" >> .env
+          echo "WEBHOOK_TRANSACTION_TOKEN_PILLARBANK_SECRET=bank-system-simulator" >> .env.testing
+          echo "KYC_SECRET_KEY=pillar-bank" >> .env.testing
 
       - name: Install dependencies
         run: docker compose exec -T php composer install
@@ -47,11 +59,6 @@ jobs:
           docker compose exec -T php php artisan jwt:secret --force
           docker compose exec -T php php artisan key:generate --env=testing
           docker compose exec -T php php artisan jwt:secret --env=testing --force
-
-      - name: Clear and cache config
-        run: |
-          docker compose exec -T php php artisan config:clear
-          docker compose exec -T php php artisan config:cache
 
       - name: Run migrations
         run: docker compose exec -T php php artisan migrate --force
